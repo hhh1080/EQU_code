@@ -105,6 +105,7 @@ end
 % 等值发电机母线化简结束
 %% 网络化简
 % 辨别保留节点、边界节点和消去节点(mbusno实际代表母线名)
+% mbusno为同调等值后的全部节点号，savebus是保留母线的节点号
 [throwbus,throwno]=setdiff(mbusno,savebus); 
 [savebus,saveno]=setdiff(mbusno,throwbus);
 
