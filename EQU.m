@@ -2,7 +2,7 @@ function [EQUbus,EQUbranch,EQUgen,EQUY,EQUfault] = EQU(bus,branch,Y,gen,savebus,
 
 busnum=size(bus,1);
 %找到与group关联的节点
-groupnum=size(group,1);
+groupnum=size(group,1);%%groupnum为机群数
 [groupnum,groupgennum]=size(group);
 busno=bus(:,1);
 mbusno=busno;
@@ -28,11 +28,11 @@ for ii=1:groupnum
         vemagn=vemagn+bus(CBUS(i,1),2);
         veangle=veangle+bus(CBUS(i,1),3);
     end
-    vemagn=vemagn/size(CBUS,1);
-    veangle=veangle/size(CBUS,1);
+    vemagn=vemagn/size(CBUS,1);%%用电压的平均值来表示等值母线电压
+    veangle=veangle/size(CBUS,1);%%用角度的平均值来表示等值母线角度
     ve=vemagn*cos(veangle)+sqrt(-1)*vemagn*sin(veangle);
     
-    %找到与相应等值集群相关联的节点群
+    %找到与相应等值集群相关联的节点群（就是与需要等值的节点有线路连接的节点）
     RBUS=[];
     for jj=2:groupgennum
         if group(ii,jj)~=0
